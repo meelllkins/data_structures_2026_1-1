@@ -15,6 +15,7 @@ public class Main
             System.out.println("1. Cadenas de caracteres");
             System.out.println("2. Vectores");
             System.out.println("3. Matrices");
+            System.out.println("4. Registros");
             System.out.print("Ingrese su opción: ");
             resp = input.nextLine();
 
@@ -30,6 +31,9 @@ public class Main
                     break;
                 case "3":
                     menuMatrix();
+                    break;
+                case "4":
+                    menuRecords();
                     break;
                 default:
                     System.out.println("Opción no válida");
@@ -424,5 +428,74 @@ public class Main
             }
         } while (!resp.equals("0"));
     }
+
+    public static void menuRecords()
+    {
+        String name, resp;
+        byte age;
+        Persons per = new Persons();
+        
+        do {
+            System.out.println("\n-------Menú Registros------");
+            System.out.println("0. Regresar");
+            System.out.println("1. Agregar dato");
+            System.out.println("2. Tamaño");
+            System.out.println("3. Mostrar");
+            System.out.println("4. Suma datos");
+            System.out.println("5. Promedio datos");
+            System.out.println("6. Mayor dato");
+            System.out.print("Ingrese su opción: ");
+            resp = input.nextLine();
+
+            switch (resp) {
+                case "0":
+                    break;
+                case "1":
+                    System.out.print("Nombre: ");
+                    name = input.nextLine();
+                    System.out.print("Edad: ");
+                    age = input.nextByte();
+                    input.nextLine();
+                    if (per.getN() < per.getT()) {
+                        per.createPerson(name, age);
+                    } else {
+                        System.out.println("Vector lleno");
+                    }
+                    break;
+                case "2":
+                    System.out.println("Tamaño vector: " + per.getN());
+                    break;
+                case "3":
+                    per.showPerson();
+                    break;
+                
+                // case "9":
+                //     if (v.getN() > 0) {
+                //         System.out.println("Suma datos vector: " + v.sumVector());
+                //     } else {
+                //         System.out.println("Vector vacío");
+                //     }
+                //     break;
+                // case "10":
+                //     if (v.getN() > 0) {
+                //         System.out.println("Promedio datos vector: " + v.avgVector());
+                //     } else {
+                //         System.out.println("Vector vacío");
+                //     }
+                //     break;
+                // case "11":
+                //     if (v.getN() > 0) {
+                //         System.out.println("Mayor dato vector: " + v.maxVector());
+                //     } else {
+                //         System.out.println("Vector vacío");
+                //     }
+                //     break;
+                default:
+                    System.out.println("Opción no válida");
+                    break;
+            }
+        } while (!resp.equals("0"));
+    }
+    
     
 }
