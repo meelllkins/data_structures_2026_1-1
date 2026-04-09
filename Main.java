@@ -334,6 +334,8 @@ public class Main
             System.out.println("9. Triángulo derecho");
             System.out.println("10. Triangular inferior");
             System.out.println("11. Triangular inferior secundaria");
+            System.out.println("12. Mayor dato por fila");
+            System.out.println("13. Promedio por columna");
             System.out.print("Ingrese su opción: ");
             resp = input.nextLine();
 
@@ -422,6 +424,20 @@ public class Main
                         System.out.println("La matriz debe ser cuadrada");
                     }
                     break;
+                case "12":
+                    if (matrix.getM() > 0 && matrix.getN() > 0) {
+                        matrix.maxRow();
+                    } else {
+                        System.out.println("Debe crear la matriz");
+                    }
+                    break;
+                case "13":
+                    if (matrix.getM() > 0 && matrix.getN() > 0) {
+                        matrix.averageColumn();
+                    } else {
+                        System.out.println("Debe crear la matriz");
+                    }
+                    break;
                 default:
                     System.out.println("Opción no válida");
                     break;
@@ -441,9 +457,10 @@ public class Main
             System.out.println("1. Agregar dato");
             System.out.println("2. Tamaño");
             System.out.println("3. Mostrar");
-            System.out.println("4. Suma datos");
-            System.out.println("5. Promedio datos");
-            System.out.println("6. Mayor dato");
+            System.out.println("4. Persona joven");
+            System.out.println("5. Porcentaje mayores");
+            // System.out.println("5. Promedio datos");
+            // System.out.println("6. Mayor dato");
             System.out.print("Ingrese su opción: ");
             resp = input.nextLine();
 
@@ -467,6 +484,20 @@ public class Main
                     break;
                 case "3":
                     per.showPerson();
+                    break;
+                case "4":
+                    if (per.getN() > 0) {
+                        per.youngPerson();
+                    } else {
+                        System.out.println("No hay personas registradas");
+                    }
+                    break;
+                case "5":
+                    if (per.getN() > 0) {
+                        System.out.println("Porcentaje mayores de edad: " + per.percentageMax18());
+                    } else {
+                        System.out.println("No hay personas registradas");
+                    }
                     break;
                 
                 // case "9":

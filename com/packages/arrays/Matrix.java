@@ -144,4 +144,29 @@ public class Matrix
         }
     }
 
+    public void maxRow()
+    {
+        for (int i = 0; i < m; i++) {
+            int max = mat[i][0]; //Supuesto: el mayor está en la primera columna
+            for (int j = 1; j < n; j++) {
+                if (mat[i][j] > max) {
+                    max = mat[i][j]; 
+                }
+            }
+            System.out.println("Mayor fila " + i + ": " + max);
+        }
+    }
+
+    public void averageColumn()
+    {
+        for (int j = 0; j < n; j++) {
+            int sum = 0;
+            for (int i = 0; i < m; i++) {
+                sum += mat[i][j];
+            }
+            System.out.println("Promedio ciudad " + j + ": " + (double)(sum) / m);
+        }
+    }
+
+
 }

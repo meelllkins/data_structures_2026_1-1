@@ -38,4 +38,28 @@ public class Persons
             System.out.println(recPer[i].name + "\t\t" + recPer[i].age);
         }
     }
+
+    public void youngPerson()
+    {
+        byte minAge = recPer[0].age;
+        String minName = recPer[0].name;
+        for (int i = 1; i < n; i++) {
+            if (recPer[i].age < minAge) {
+                minAge = recPer[i].age;
+                minName = recPer[i].name;
+            }
+        }
+        System.out.println("Persona más joven: " + minName + "\nEdad: " + minAge);
+    }
+
+    public double percentageMax18()
+    {
+        int countMaxAge = 0;
+        for (int i = 0; i < n; i++) {
+            if (recPer[i].age >= 18) {
+                countMaxAge++;
+            }
+        }
+        return countMaxAge * (double)100 / n;
+    }
 }
