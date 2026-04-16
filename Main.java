@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 import com.packages.arrays.*;
 import com.packages.strings.*;
+import com.packages.linked_list.*;
 
 public class Main 
 {
@@ -16,6 +17,7 @@ public class Main
             System.out.println("2. Vectores");
             System.out.println("3. Matrices");
             System.out.println("4. Registros");
+            System.out.println("5. Lista Simplemente Ligada");
             System.out.print("Ingrese su opción: ");
             resp = input.nextLine();
 
@@ -34,6 +36,9 @@ public class Main
                     break;
                 case "4":
                     menuRecords();
+                    break;
+                case "5":
+                    menuLSL();
                     break;
                 default:
                     System.out.println("Opción no válida");
@@ -521,6 +526,59 @@ public class Main
                 //         System.out.println("Vector vacío");
                 //     }
                 //     break;
+                default:
+                    System.out.println("Opción no válida");
+                    break;
+            }
+        } while (!resp.equals("0"));
+    }
+
+
+    public static void menuLSL()
+    {
+        int datum;
+        String resp;
+        LSL list = new LSL();
+        do {
+            System.out.println("\n-------Menú LSL------");
+            System.out.println("0. Regresar");
+            System.out.println("1. Agregar dato");
+            System.out.println("2. Tamaño");
+            System.out.println("3. Mostrar");
+            System.out.println("4. Suma");
+            System.out.println("5. Promedio");
+            System.out.print("Ingrese su opción: ");
+            resp = input.nextLine();
+            
+            switch (resp) {
+                case "0":
+                    break;
+                case "1":
+                    System.out.print("Nuevo dato: ");
+                    datum = input.nextInt();
+                    input.nextLine();
+                    list.createBeginLSL(datum);
+                    System.out.println("Dato agregado en la LSL");
+                    break;
+                case "2":
+                    System.out.println("Tamaño lista: " + list.countNodesLSL() + " nodos");
+                    break;
+                case "3":
+                    list.showLSL();
+                    break;
+                case "4":
+                    System.out.println("Suma lista: " + list.sumNodesLSL());
+                    break;
+                case "5":
+                    if (list.head != null) {
+                        System.out.println(
+                            "Promedio lista: " + 
+                            list.sumNodesLSL() / list.countNodesLSL()
+                        );
+                    } else {
+                        System.out.println("Lista vacía");
+                    }
+                    break;
                 default:
                     System.out.println("Opción no válida");
                     break;
