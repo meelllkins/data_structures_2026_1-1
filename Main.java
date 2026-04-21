@@ -1,8 +1,7 @@
-import java.util.Scanner;
-
 import com.packages.arrays.*;
-import com.packages.strings.*;
 import com.packages.linked_list.*;
+import com.packages.strings.*;
+import java.util.Scanner;
 
 public class Main 
 {
@@ -539,6 +538,7 @@ public class Main
         int datum;
         String resp;
         LSL list = new LSL();
+        Node r;
         do {
             System.out.println("\n-------Menú LSL------");
             System.out.println("0. Regresar");
@@ -547,6 +547,8 @@ public class Main
             System.out.println("3. Mostrar");
             System.out.println("4. Suma");
             System.out.println("5. Promedio");
+            System.out.println("6. Buscar");
+            System.out.println("7. Modificar");
             System.out.print("Ingrese su opción: ");
             resp = input.nextLine();
             
@@ -577,6 +579,41 @@ public class Main
                         );
                     } else {
                         System.out.println("Lista vacía");
+                    }
+                    break;
+                case "6":
+                    if (list.head != null) {
+                        System.out.print("Dato a buscar: ");
+                        datum = input.nextInt();
+                        input.nextLine();
+                        r = list.findLSL(datum);
+                        if (r == null) {
+                            System.out.println(datum + " no se encuentra en la LSL");
+                        } else {
+                            System.out.println(datum + " encontrado en dirección " + r);
+                        }
+                    } else {
+                        System.out.println("No ha creado la LSL");
+                    }
+                    break;
+                case "7":
+                    if (list.head != null) {
+                        System.out.print("Dato a modificar: ");
+                        datum = input.nextInt();
+                        input.nextLine();
+                        r = list.findLSL(datum);
+                        if (r == null) {
+                            System.out.println(datum + " no se encuentra en la LSL");
+                        } else {
+                            System.out.print("Nuevo dato: ");
+                            datum = input.nextInt();
+                            input.nextLine();
+                            list.updateNode(r, datum);
+                            System.out.println("Se actualizó el dato correctamente");
+                            
+                        }
+                    } else {
+                        System.out.println("No ha creado la LSL");
                     }
                     break;
                 default:

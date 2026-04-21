@@ -49,12 +49,33 @@ public class LSL
         while (p != null) {
             i++;
             System.out.println(
-                "Dato " + i + ": " + p.info +
-                "Dirección nodo: " + p +
-                "Dirección liga: " + p.link 
+                "\nDato " + i + ": " + p.info +
+                "\nDirección nodo: " + p +
+                "\nDirección liga: " + p.link 
             );
             p = p.link;
         }
+    }
+
+    public Node findLSL(int datum)
+    {
+        Node p = head;
+        Node q = null;
+        boolean sw = false; //datum no se encuentra en la LSL
+        while (p != null && !sw) {
+            if (p.info == datum) {
+                sw = true;
+                q = p; 
+            } else {
+                p = p.link;
+            }
+        }
+        return q;
+    }
+
+    public void updateNode(Node q, int datum)
+    {
+        q.info = datum;
     }
 
     
