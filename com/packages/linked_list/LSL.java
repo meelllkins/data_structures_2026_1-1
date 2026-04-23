@@ -78,5 +78,68 @@ public class LSL
         q.info = datum;
     }
 
+    public void deleteNodeLSL(int datum)
+    {
+        boolean sw = false;
+        if (head.info == datum) {
+            head = head.link;
+            sw = true;
+        } else {
+            Node q = head;
+            Node p = q.link;
+            while (p != null && !sw) {
+                if (p.info == datum) {
+                    sw = true;
+                } else {
+                    p = p.link;
+                    q = q.link;
+                }
+            }
+            if (sw) {
+                q.link = p.link;
+                System.out.println(datum + " eliminado correctamente");
+            } else {
+                System.out.println(datum + " no se encuentra");
+            }
+        }
+    }
+
+    public Node findReferenceLSL(int datum)
+    {
+       boolean sw = false;
+       Node q = head;
+       Node p = q.link;
+        if (head.info == datum) {
+            sw = true;
+        } else {
+            while (p != null && !sw) {
+                if (p.info == datum) {
+                    sw = true;
+                } else {
+                    p = p.link;
+                    q = q.link;
+                }
+            }
+        }
+        if (sw) {
+            return q;
+        } else {
+            return null;
+        }
+    }
+
+    public void insertBeforeLSL(Node dirRef, int datum)
+    {
+        Node n = new Node();
+        n.info = datum;
+        if (dirRef == head) {
+            n.link = head;
+            head = n;
+        } else {
+            n.link = dirRef.link;
+            dirRef.link = n;
+        }
+    }
+
     
 }

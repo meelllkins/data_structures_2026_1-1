@@ -549,6 +549,8 @@ public class Main
             System.out.println("5. Promedio");
             System.out.println("6. Buscar");
             System.out.println("7. Modificar");
+            System.out.println("8. Eliminar");
+            System.out.println("9. Insertar (antes de referencia)");
             System.out.print("Ingrese su opción: ");
             resp = input.nextLine();
             
@@ -611,6 +613,33 @@ public class Main
                             list.updateNode(r, datum);
                             System.out.println("Se actualizó el dato correctamente");
                             
+                        }
+                    } else {
+                        System.out.println("No ha creado la LSL");
+                    }
+                    break;
+                case "8":
+                    if (list.head != null) {
+                        System.out.print("Dato a eliminar: ");
+                        datum = input.nextInt();
+                        input.nextLine();
+                        list.deleteNodeLSL(datum);
+                    } else {
+                        System.out.println("No ha creado la LSL");
+                    }
+                    break;
+                case "9":
+                    if (list.head != null) {
+                        System.out.print("Dato de referencia: ");
+                        datum = input.nextInt();
+                        input.nextLine();
+                        Node dirRef = list.findReferenceLSL(datum);
+                        if (dirRef != null) {
+                            System.out.print("Dato a insertar: ");
+                            datum = input.nextInt();
+                            input.nextLine();
+                            list.insertBeforeLSL(dirRef, datum);
+                            System.out.println(datum + " se insertó correctamente");
                         }
                     } else {
                         System.out.println("No ha creado la LSL");
