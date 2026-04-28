@@ -17,6 +17,7 @@ public class Main
             System.out.println("3. Matrices");
             System.out.println("4. Registros");
             System.out.println("5. Lista Simplemente Ligada");
+            System.out.println("6. Lista Simplemente Ligada Circular");
             System.out.print("Ingrese su opción: ");
             resp = input.nextLine();
 
@@ -38,6 +39,9 @@ public class Main
                     break;
                 case "5":
                     menuLSL();
+                    break;
+                case "6":
+                    menuLSLC();
                     break;
                 default:
                     System.out.println("Opción no válida");
@@ -652,5 +656,94 @@ public class Main
         } while (!resp.equals("0"));
     }
     
+    public static void menuLSLC()
+    {
+        int datum;
+        String resp;
+        LSLC list = new LSLC();
+        Node r;
+        do {
+            System.out.println("\n-------Menú LSLC------");
+            System.out.println("0. Regresar");
+            System.out.println("1. Agregar dato");
+            System.out.println("2. Tamaño");
+            System.out.println("3. Mostrar");
+            System.out.println("4. Buscar");
+            System.out.println("5. Modificar");
+            System.out.println("6. Eliminar");
+            System.out.println("7. Insertar (antes de referencia)");
+            System.out.print("Ingrese su opción: ");
+            resp = input.nextLine();
+            
+            switch (resp) {
+                case "0":
+                    break;
+                case "1":
+                    System.out.print("Nuevo dato: ");
+                    datum = input.nextInt();
+                    input.nextLine();
+                    
+                    list.createEndLSLC(datum);
+                    System.out.println("Dato agregado en la LSLC");
+                    break;
+                // case "2":
+                //     System.out.println("Tamaño lista: " + list.countNodesLSL() + " nodos");
+                //     break;
+                case "3":
+                    list.showLSLC();
+                    break;
+                // case "7":
+                //     if (list.head != null) {
+                //         System.out.print("Dato a modificar: ");
+                //         datum = input.nextInt();
+                //         input.nextLine();
+                //         r = list.findLSL(datum);
+                //         if (r == null) {
+                //             System.out.println(datum + " no se encuentra en la LSL");
+                //         } else {
+                //             System.out.print("Nuevo dato: ");
+                //             datum = input.nextInt();
+                //             input.nextLine();
+                //             list.updateNode(r, datum);
+                //             System.out.println("Se actualizó el dato correctamente");
+                            
+                //         }
+                //     } else {
+                //         System.out.println("No ha creado la LSL");
+                //     }
+                //     break;
+                // case "8":
+                //     if (list.head != null) {
+                //         System.out.print("Dato a eliminar: ");
+                //         datum = input.nextInt();
+                //         input.nextLine();
+                //         list.deleteNodeLSL(datum);
+                //     } else {
+                //         System.out.println("No ha creado la LSL");
+                //     }
+                //     break;
+                // case "9":
+                //     if (list.head != null) {
+                //         System.out.print("Dato de referencia: ");
+                //         datum = input.nextInt();
+                //         input.nextLine();
+                //         Node dirRef = list.findReferenceLSL(datum);
+                //         if (dirRef != null) {
+                //             System.out.print("Dato a insertar: ");
+                //             datum = input.nextInt();
+                //             input.nextLine();
+                //             list.insertBeforeLSL(dirRef, datum);
+                //             System.out.println(datum + " se insertó correctamente");
+                //         }
+                //     } else {
+                //         System.out.println("No ha creado la LSL");
+                //     }
+                //     break;
+                default:
+                    System.out.println("Opción no válida");
+                    break;
+            }
+        } while (!resp.equals("0"));
+    }
     
 }
