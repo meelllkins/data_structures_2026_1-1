@@ -18,6 +18,7 @@ public class Main
             System.out.println("4. Registros");
             System.out.println("5. Lista Simplemente Ligada");
             System.out.println("6. Lista Simplemente Ligada Circular");
+            System.out.println("7. Lista Doblemente Ligada");
             System.out.print("Ingrese su opción: ");
             resp = input.nextLine();
 
@@ -42,6 +43,9 @@ public class Main
                     break;
                 case "6":
                     menuLSLC();
+                    break;
+                case "7":
+                    menuLDL();
                     break;
                 default:
                     System.out.println("Opción no válida");
@@ -692,53 +696,98 @@ public class Main
                 case "3":
                     list.showLSLC();
                     break;
-                // case "7":
-                //     if (list.head != null) {
-                //         System.out.print("Dato a modificar: ");
-                //         datum = input.nextInt();
-                //         input.nextLine();
-                //         r = list.findLSL(datum);
-                //         if (r == null) {
-                //             System.out.println(datum + " no se encuentra en la LSL");
-                //         } else {
-                //             System.out.print("Nuevo dato: ");
-                //             datum = input.nextInt();
-                //             input.nextLine();
-                //             list.updateNode(r, datum);
-                //             System.out.println("Se actualizó el dato correctamente");
-                            
-                //         }
-                //     } else {
-                //         System.out.println("No ha creado la LSL");
-                //     }
-                //     break;
-                // case "8":
-                //     if (list.head != null) {
-                //         System.out.print("Dato a eliminar: ");
-                //         datum = input.nextInt();
-                //         input.nextLine();
-                //         list.deleteNodeLSL(datum);
-                //     } else {
-                //         System.out.println("No ha creado la LSL");
-                //     }
-                //     break;
-                // case "9":
-                //     if (list.head != null) {
-                //         System.out.print("Dato de referencia: ");
-                //         datum = input.nextInt();
-                //         input.nextLine();
-                //         Node dirRef = list.findReferenceLSL(datum);
-                //         if (dirRef != null) {
-                //             System.out.print("Dato a insertar: ");
-                //             datum = input.nextInt();
-                //             input.nextLine();
-                //             list.insertBeforeLSL(dirRef, datum);
-                //             System.out.println(datum + " se insertó correctamente");
-                //         }
-                //     } else {
-                //         System.out.println("No ha creado la LSL");
-                //     }
-                //     break;
+                default:
+                    System.out.println("Opción no válida");
+                    break;
+            }
+        } while (!resp.equals("0"));
+    }
+    
+    public static void menuLDL()
+    {
+        int datum;
+        String resp;
+        LDL ldl = new LDL();
+        NodeLDL dir;
+        do {
+            System.out.println("\n-------Menú LDL------");
+            System.out.println("0. Regresar");
+            System.out.println("1. Agregar dato");
+            System.out.println("2. Tamaño");
+            System.out.println("3. Mostrar");
+            System.out.println("4. Buscar");
+            System.out.println("5. Modificar");
+            System.out.println("6. Eliminar");
+            System.out.println("7. Insertar (antes de referencia)");
+            System.out.print("Ingrese su opción: ");
+            resp = input.nextLine();
+            
+            switch (resp) {
+                case "0":
+                    break;
+                case "1":
+                    System.out.print("Nuevo dato: ");
+                    datum = input.nextInt();
+                    input.nextLine();
+                    ldl.createBeginLDL(datum);
+                    System.out.println("Dato agregado en la LDL");
+                    break;
+                case "2":
+                    System.out.println("Tamaño lista: " + ldl.getN() + " nodos");
+                    break;
+                case "3":
+                    ldl.showLDL();
+                    break;
+                case "4":
+                    if (ldl.head != null) {
+                        System.out.print("Dato a buscar: ");
+                        datum = input.nextInt();
+                        input.nextLine();
+                        dir = ldl.findLDL(datum);
+                        if (dir == null) {
+                            System.out.println(datum + " no se encuentra en la LDL");
+                        } else {
+                            System.out.println(datum + " encontrado en dirección " + dir);
+                        }
+                    } else {
+                        System.out.println("No ha creado la LDL");
+                    }
+                    break;
+                case "5":
+                    if (ldl.head != null) {
+                        System.out.print("Dato a modificar: ");
+                        datum = input.nextInt();
+                        input.nextLine();
+                        dir = ldl.findLDL(datum);
+                        if (dir != null) {
+                            System.out.print("Nuevo dato: ");
+                            datum = input.nextInt();
+                            input.nextLine();
+                            ldl.updateNodeLDL(dir, datum);
+                            System.out.println("Dato actualizado correctamente");
+                        } else {
+                            System.out.println(datum + " no se encuentra en la LDL");
+                        }
+                    } else {
+                        System.out.println("No ha creado la LDL");
+                    }
+                    break;
+                case "6":
+                    if (ldl.head != null) {
+                        System.out.print("Dato a eliminar: ");
+                        datum = input.nextInt();
+                        input.nextLine();
+                        dir = ldl.findLDL(datum);
+                        if (dir != null) {
+                            ldl.deleteNodeLDL(dir);
+                            System.out.println("Dato eliminado correctamente");
+                        } else {
+                            System.out.println(datum + " no se encuentra en la LDL");
+                        }
+                    } else {
+                        System.out.println("No ha creado la LDL");
+                    }
+                    break;
                 default:
                     System.out.println("Opción no válida");
                     break;
