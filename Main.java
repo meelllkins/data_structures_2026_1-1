@@ -2,6 +2,7 @@ import com.packages.arrays.*;
 import com.packages.linked_list.*;
 import com.packages.strings.*;
 import java.util.Scanner;
+import com.packages.games.*;
 
 public class Main 
 {
@@ -18,6 +19,8 @@ public class Main
             System.out.println("4. Registros");
             System.out.println("5. Lista Simplemente Ligada");
             System.out.println("6. Lista Simplemente Ligada Circular");
+            System.out.println("7. Polinomios");
+            System.out.println("8. Juegos");
             System.out.print("Ingrese su opción: ");
             resp = input.nextLine();
 
@@ -42,6 +45,12 @@ public class Main
                     break;
                 case "6":
                     menuLSLC();
+                    break;
+                case "7":
+                    menuPolynomial();
+                    break;
+                case"8":
+                    menuGames();
                     break;
                 default:
                     System.out.println("Opción no válida");
@@ -746,4 +755,162 @@ public class Main
         } while (!resp.equals("0"));
     }
     
+    
+    public static void menuPolynomial() {
+    String resp;
+    LSLPoly f = new LSLPoly();
+    LSLPoly g = new LSLPoly();
+ 
+    do {
+        System.out.println("\n======= MENÚ POLINOMIOS =======");
+        System.out.println("0. Regresar");
+        System.out.println("1. Crear / agregar término a f(x)");
+        System.out.println("2. Crear / agregar término a g(x)");
+        System.out.println("3. Mostrar ambos polinomios");
+        System.out.println("4. Ordenar polinomios (mayor a menor exponente)");
+        System.out.println("5. Modificar término de un polinomio");
+        System.out.println("6. Eliminar término de un polinomio");
+        System.out.println("7. Agregar término conservando orden");
+        System.out.println("8. Sumar f(x) + g(x)");
+        System.out.println("9. Restar f(x) - g(x)");
+        System.out.println("10. Evaluar f(a) y g(a)");
+        System.out.print("Ingrese su opción: ");
+        resp = input.nextLine();
+ 
+        switch (resp) {
+ 
+            case "0":
+                break;
+ 
+            // ── a. Agregar término a f(x) ──
+            case "1": {
+                System.out.print("Coeficiente: ");
+                int coef = input.nextInt(); input.nextLine();
+                System.out.print("Exponente: ");
+                int exp = input.nextInt(); input.nextLine();
+                if (f.ordenado) {
+                    f.agregarOrdenado(coef, exp);
+                } else {
+                    f.agregarTermino(coef, exp);
+                }
+                System.out.println("Término agregado a f(x).");
+                break;
+            }
+ 
+            // ── a. Agregar término a g(x) ──
+            case "2": {
+                System.out.print("Coeficiente: ");
+                int coef = input.nextInt(); input.nextLine();
+                System.out.print("Exponente: ");
+                int exp = input.nextInt(); input.nextLine();
+                if (g.ordenado) {
+                    g.agregarOrdenado(coef, exp);
+                } else {
+                    g.agregarTermino(coef, exp);
+                }
+                System.out.println("Término agregado a g(x).");
+                break;
+            }
+ 
+            // ── b. Mostrar ambos ──
+            case "3":
+                f.mostrarPolinomio("f");
+                g.mostrarPolinomio("g");
+                break;
+ 
+            // ── c. Ordenar ──
+            case "4":
+                f.ordenarPolinomio();
+                g.ordenarPolinomio();
+                f.mostrarPolinomio("f");
+                g.mostrarPolinomio("g");
+                break;
+ 
+            // ── d. Modificar ──
+            case "5": {
+                System.out.println("¿Cuál polinomio? (1 = f, 2 = g): ");
+                String cual = input.nextLine();
+                System.out.print("Exponente del término a modificar: ");
+                int exp = input.nextInt(); input.nextLine();
+                System.out.print("Nuevo coeficiente: ");
+                int coef = input.nextInt(); input.nextLine();
+                LSLPoly objetivo = cual.equals("1") ? f : g;
+                String nombre = cual.equals("1") ? "f" : "g";
+                if (objetivo.modificarTermino(exp, coef)) {
+                    System.out.println("Término modificado en " + nombre + "(x).");
+                } else {
+                    System.out.println("No se encontró el exponente " + exp + " en " + nombre + "(x).");
+                }
+                break;
+            }
+ 
+            // ── e. Eliminar ──
+            case "6": {
+                System.out.println("¿Cuál polinomio? (1 = f, 2 = g): ");
+                String cual = input.nextLine();
+                System.out.print("Exponente del término a eliminar: ");
+                int exp = input.nextInt(); input.nextLine();
+                LSLPoly objetivo = cual.equals("1") ? f : g;
+                String nombre = cual.equals("1") ? "f" : "g";
+                if (objetivo.eliminarTermino(exp)) {
+                    System.out.println("Término con exponente " + exp + " eliminado de " + nombre + "(x).");
+                } else {
+                    System.out.println("No se encontró el exponente " + exp + " en " + nombre + "(x).");
+                }
+                break;
+            }
+ 
+            // ── f. Agregar conservando orden ──
+            case "7": {
+                System.out.println("¿Cuál polinomio? (1 = f, 2 = g): ");
+                String cual = input.nextLine();
+                System.out.print("Coeficiente: ");
+                int coef = input.nextInt(); input.nextLine();
+                System.out.print("Exponente: ");
+                int exp = input.nextInt(); input.nextLine();
+                LSLPoly objetivo = cual.equals("1") ? f : g;
+                String nombre = cual.equals("1") ? "f" : "g";
+                objetivo.agregarOrdenado(coef, exp);
+                System.out.println("Término agregado a " + nombre + "(x) conservando orden.");
+                break;
+            }
+ 
+            // ── g. Suma ──
+            case "8": {
+                LSLPoly suma = f.sumar(g);
+                System.out.print("f(x) + g(x) = ");
+                suma.mostrarPolinomio("h");
+                break;
+            }
+ 
+            // ── h. Resta ──
+            case "9": {
+                LSLPoly resta = f.restar(g);
+                System.out.print("f(x) - g(x) = ");
+                resta.mostrarPolinomio("h");
+                break;
+            }
+ 
+            // ── i. Evaluar ──
+            case "10": {
+                System.out.print("Ingrese el valor de a: ");
+                double a = input.nextDouble(); input.nextLine();
+                System.out.println("f(" + a + ") = " + f.evaluar(a));
+                System.out.println("g(" + a + ") = " + g.evaluar(a));
+                break;
+            }
+ 
+            default:
+                System.out.println("Opción no válida");
+                break;
+        }
+ 
+    } while (!resp.equals("0"));
+}
+
+public static void menuGames() {
+    JuegoTriqui juego = new JuegoTriqui();
+    juego.menu();
+}
+
 }
