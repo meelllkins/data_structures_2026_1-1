@@ -19,7 +19,8 @@ public class Main
             System.out.println("4. Registros");
             System.out.println("5. Lista Simplemente Ligada");
             System.out.println("6. Lista Simplemente Ligada Circular");
-            soutem.out.println
+            System.out.println("7. Polinomios");
+            System.out.println("8. Juego Triqui");
             System.out.print("Ingrese su opción: ");
             resp = input.nextLine();
 
@@ -44,6 +45,12 @@ public class Main
                     break;
                 case "6":
                     menuLSLC();
+                    break;
+                case "7": 
+                    menuPolynomial(); 
+                    break;
+                case "8": 
+                    menuGames(); 
                     break;
                 default:
                     System.out.println("Opción no válida");
