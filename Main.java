@@ -680,7 +680,7 @@ public class Main
             System.out.println("4. Buscar");
             System.out.println("5. Modificar");
             System.out.println("6. Eliminar");
-            System.out.println("7. Insertar (antes de referencia)");
+            System.out.println("7. Insertar (despues de referencia)");
             System.out.print("Ingrese su opción: ");
             resp = input.nextLine();
             
@@ -788,6 +788,25 @@ public class Main
                             System.out.println("Dato eliminado correctamente");
                         } else {
                             System.out.println(datum + " no se encuentra en la LDL");
+                        }
+                    } else {
+                        System.out.println("No ha creado la LDL");
+                    }
+                    break;
+                case "7":
+                    if (ldl.head != null) {
+                        System.out.println("Dato referencia: ");
+                        datum = input.nextInt();
+                        input.nextLine();
+                        dir = ldl.findLDL(datum);
+                        if (dir != null) {
+                            System.out.println("Dato a insertar: ");
+                            datum = input.nextInt();
+                            input.nextLine();
+                            ldl.insertAfterLDL(dir, datum);
+                            System.out.println("Dato insertado correctamente");
+                        } else {
+                            System.out.println("El dato de referencia " + datum + " no se encuentra en la LDL");
                         }
                     } else {
                         System.out.println("No ha creado la LDL");
