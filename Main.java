@@ -19,6 +19,7 @@ public class Main
             System.out.println("4. Registros");
             System.out.println("5. Lista Simplemente Ligada");
             System.out.println("6. Lista Simplemente Ligada Circular");
+            soutem.out.println
             System.out.print("Ingrese su opción: ");
             resp = input.nextLine();
 
