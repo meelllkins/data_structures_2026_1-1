@@ -3,6 +3,7 @@ import com.packages.linked_list.*;
 import com.packages.strings.*;
 import java.util.Scanner;
 import com.packages.games.*;
+import com.packages.stacks.Stack;
 
 public class Main 
 {
@@ -21,6 +22,8 @@ public class Main
             System.out.println("6. Lista Simplemente Ligada Circular");
             System.out.println("7. Polinomios");
             System.out.println("8. Juego Triqui");
+            System.out.println("9. Lista Doblemente Ligada");
+            System.out.println("10. Pilas");
             System.out.print("Ingrese su opción: ");
             resp = input.nextLine();
 
@@ -51,6 +54,12 @@ public class Main
                     break;
                 case "8": 
                     menuGames(); 
+                    break;
+                case "9":
+                    menuLDL();
+                    break;
+                case "10":
+                    menuStack();
                     break;
                 default:
                     System.out.println("Opción no válida");
@@ -972,9 +981,60 @@ public class Main
     } while (!resp.equals("0"));
 }
 
-public static void menuGames() {
-    JuegoTriqui juego = new JuegoTriqui();
-    juego.menu();
+        public static void menuGames() {
+        JuegoTriqui juego = new JuegoTriqui();
+        juego.menu();
 }
+    
 
+public static void menuStack()
+    {
+        int datum;
+        String resp;
+        Stack objStack = new Stack();
+        do {
+            System.out.println("\n-------Menú Pilas------");
+            System.out.println("0. Regresar");
+            System.out.println("1. Apilar dato");
+            System.out.println("2. Tamaño");
+            System.out.println("3. Mostrar");
+            System.out.println("4. Desapilar dato");
+            System.out.println("Ingrese su opción: ");
+
+            resp = input.nextLine();
+            
+            switch (resp) {
+                case "0":
+                    break;
+                case "1":
+                    System.out.print("Dato a apilar: ");
+                    datum = input.nextInt();
+                    input.nextLine();
+                    objStack.stacking(datum);
+                    System.out.println("Dato apilado en la pila");
+                    break;
+                case "2":
+                    System.out.println("Tamaño pila: " + objStack.getTop() + " elementos");
+                    break;
+                case "3":
+                if (objStack.getTop() > 0) {
+                        objStack.showStack();
+                    } else {
+                        System.out.println("La pila está vacía");
+                    }
+                    break;
+                case "4":
+                    if (objStack.getTop() > 0) {
+                        System.out.println("Dato desapilado de la pila: " + objStack.unstacking());
+                    } else {
+                        System.out.println("La pila está vacía");
+                    }
+                    break;
+                default:
+                    System.out.println("Opción no válida");
+                    break;
+            }
+        } while (!resp.equals("0"));
+    }
+    
 }
