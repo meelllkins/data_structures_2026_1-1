@@ -4,6 +4,8 @@ import com.packages.strings.*;
 import java.util.Scanner;
 import com.packages.games.*;
 import com.packages.stacks.Stack;
+import com.packages.queues.Queue;
+import com.packages.recursivity.Recursion;
 
 public class Main 
 {
@@ -24,6 +26,8 @@ public class Main
             System.out.println("8. Juego Triqui");
             System.out.println("9. Lista Doblemente Ligada");
             System.out.println("10. Pilas");
+            System.out.println("11. Colas");
+            System.out.println("12. Recursividad");
             System.out.print("Ingrese su opción: ");
             resp = input.nextLine();
 
@@ -61,6 +65,12 @@ public class Main
                 case "10":
                     menuStack();
                     break;
+                case "11":
+                    menuQueue();
+                    break;
+                case "12":
+                    menuRecursion();
+                    break; 
                 default:
                     System.out.println("Opción no válida");
                     break;
@@ -1036,5 +1046,133 @@ public static void menuStack()
             }
         } while (!resp.equals("0"));
     }
+
+    public static void menuQueue()
+    {
+        int datum;
+        String resp;
+        Queue objQueue = new Queue();
+        do {
+            System.out.println("\n-------Menú Colas------");
+            System.out.println("0. Regresar");
+            System.out.println("1. Encolar dato");
+            System.out.println("2. Tamaño");
+            System.out.println("3. Mostrar");
+            System.out.println("4. Desencolar dato");
+            System.out.println("Ingrese su opción: ");
+
+            resp = input.nextLine();
+            
+            switch (resp) {
+                case "0":
+                    break;
+                case "1":
+                    System.out.print("Dato a encolar: ");
+                    datum = input.nextInt();
+                    input.nextLine();
+                    objQueue.addQueue(datum);
+                    System.out.println("Dato encolado en la cola");
+                    break;
+                case "2":
+                    System.out.println("Tamaño cola: " + objQueue.getEnd() + " elementos");
+                    break;
+                case "3":
+                    if (objQueue.getEnd() > 0) {
+                        objQueue.displayQueue();
+                    } else {
+                        System.out.println("La cola está vacía");
+                    }
+                    break;
+                case "4":
+                    if (objQueue.getEnd() > 0) {
+                        System.out.println("Dato desencolado de la cola: " + objQueue.popQueue());
+                    } else {
+                        System.out.println("La cola está vacía");
+                    }
+                    break;
+                default:
+                    System.out.println("Opción no válida");
+                    break;
+            }
+        } while (!resp.equals("0"));
     
+}
+
+
+    public static void menuRecursion() {
+        int datum; 
+        String resp;
+        Recursion rec = new Recursion();
+        
+        do {
+            System.out.println("\n-------Menú Recursividad------");
+            System.out.println("0. Regresar");  
+            System.out.println("1. Factorial");
+            System.out.println("2. Imprimir primeros números naturales");
+            System.out.println("3. Fibonacci");
+            System.out.println("4. Capital");
+            System.out.println("5. Mostrar vector ");
+            System.out.println("6. Mostrar LSL");
+            System.out.print("Ingrese su opción: ");
+            resp = input.nextLine();
+
+            switch (resp) {
+                case "0":
+                    break;
+                case "1":
+                    System.out.print("Ingrese un número para calcular su factorial: ");
+                    int n = input.nextInt();
+                    input.nextLine();
+                    if (n >= 0) {
+                        System.out.println(n + "! = " + rec.factorial(n));
+                    } else {
+                        System.out.println("El número debe ser no negativo");
+                    }
+                    break;
+                case "2":
+                    System.out.print("Ingrese el número de elementos a imprimir: ");
+                    int count = input.nextInt();
+                    input.nextLine();
+                    if (count > 0) {
+                        System.out.print("Primeros " + count + " números naturales: ");
+                        rec.printNaturalNumbers(count);
+                    } else {
+                        System.out.println("El número debe ser positivo");
+                    }
+                    break;
+                case "3":
+                    System.out.print("Ingrese el número de elementos de Fibonacci a imprimir: ");
+                    int fibCount = input.nextInt();
+                    input.nextLine();
+                    if (fibCount > 0) {
+                        System.out.print("Serie de Fibonacci: ");
+                        rec.printFibonacci(fibCount);
+                    } else {
+                        System.out.println("El número debe ser positivo");
+                    }
+                    break;
+                case "4":
+                    break;
+                case "5":
+                    System.out.print("Ingrese el tamaño del vector: ");
+                    int size = input.nextInt();
+                    input.nextLine();
+                    if (size > 0) {
+                        // Aquí deberías llamar a un método que muestre el vector, por ejemplo:
+                        // rec.showVector(size);
+                    } else {
+                        System.out.println("El tamaño del vector debe ser positivo");
+                    }
+                    break;
+                case "6":
+                    System.out.println("Mostrando LSL:");
+                    // Aquí deberías llamar a un método que muestre la LSL, por ejemplo:
+                    // rec.showLSL();
+                    break;
+                default:
+                    System.out.println("Opción no válida");
+                    break;
+                }
+            } while (!resp.equals("0"));
+}
 }

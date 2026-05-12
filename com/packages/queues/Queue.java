@@ -38,6 +38,13 @@ public class Queue {
         end++;
     }
     
+    public void displayQueue()
+    {
+        for (int i = 0; i < end; i++) {
+            System.out.print(queue[i] + " <- ");
+        }
+    }
+    
     public int popQueue()
     {
         int saved = queue[0];
@@ -48,12 +55,6 @@ public class Queue {
         return saved;
     }
 
-    public void displayQueue()
-    {
-        for (int i = 0; i < end; i++) {
-            System.out.print(queue[i] + " <- ");
-        }
-    }
 
-    
+
 }
