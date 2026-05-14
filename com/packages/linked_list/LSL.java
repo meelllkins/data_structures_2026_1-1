@@ -141,5 +141,12 @@ public class LSL
         }
     }
 
+    public void displayLSLRecursivity(Node p)
+    {
+        if (p != null) {
+            System.out.println("Dato: " + p.info);
+            displayLSLRecursivity(p.link);
+        }
+    }
     
 }

@@ -583,6 +583,7 @@ public class Main
             System.out.println("7. Modificar");
             System.out.println("8. Eliminar");
             System.out.println("9. Insertar (antes de referencia)");
+            System.out.println("10. Mostrar LSL recursivamente");
             System.out.print("Ingrese su opción: ");
             resp = input.nextLine();
             
@@ -673,6 +674,14 @@ public class Main
                             list.insertBeforeLSL(dirRef, datum);
                             System.out.println(datum + " se insertó correctamente");
                         }
+                    } else {
+                        System.out.println("No ha creado la LSL");
+                    }
+                    break;
+                case "10":
+                    if (list.head != null) {
+                        System.out.println("Mostrando LSL recursivamente:");
+                        list.displayLSLRecursivity(list.head);
                     } else {
                         System.out.println("No ha creado la LSL");
                     }
@@ -1108,11 +1117,13 @@ public static void menuStack()
             System.out.println("\n-------Menú Recursividad------");
             System.out.println("0. Regresar");  
             System.out.println("1. Factorial");
-            System.out.println("2. Imprimir primeros números naturales");
-            System.out.println("3. Fibonacci");
-            System.out.println("4. Capital");
-            System.out.println("5. Mostrar vector ");
-            System.out.println("6. Mostrar LSL");
+            System.out.println("2. Imprimir primeros números naturales en orden ascendente");
+            System.out.println("3. Imprimir primeros números naturales en orden descendente");
+            System.out.println("4. Fibonacci iterativo");
+            System.out.println("5. Fibonacci recursivo");
+            System.out.println("6. Capital");
+            System.out.println("7. Mostrar vector ");
+            System.out.println("8. Mostrar LSL");
             System.out.print("Ingrese su opción: ");
             resp = input.nextLine();
 
@@ -1130,30 +1141,47 @@ public static void menuStack()
                     }
                     break;
                 case "2":
-                    System.out.print("Ingrese el número de elementos a imprimir: ");
+                    System.out.print("Ingrese n (n > 0): ");
                     int count = input.nextInt();
                     input.nextLine();
                     if (count > 0) {
                         System.out.print("Primeros " + count + " números naturales: ");
-                        rec.printNaturalNumbers(count);
+                        rec.displayNaturalNumbersAsc(count, 1);
                     } else {
                         System.out.println("El número debe ser positivo");
                     }
                     break;
                 case "3":
-                    System.out.print("Ingrese el número de elementos de Fibonacci a imprimir: ");
-                    int fibCount = input.nextInt();
+                    System.out.print("Ingrese n (n > 0): ");
+                    count = input.nextInt();
                     input.nextLine();
-                    if (fibCount > 0) {
-                        System.out.print("Serie de Fibonacci: ");
-                        rec.printFibonacci(fibCount);
+                    if (count > 0) {
+                        System.out.print("Primeros " + count + " números naturales en orden descendente: ");
+                        rec.displayNaturalNumbersDescending(count, count);
                     } else {
                         System.out.println("El número debe ser positivo");
                     }
                     break;
                 case "4":
+                    System.out.println("Ingrese n");
+                    datum = input.nextInt();
+                    input.nextLine();  
+                    if (datum > 0) {
+                        System.out.println("Fibonacci iterativo hasta n = " + datum + ":");
+                        rec.FibonacciIterative(datum);
+                    } else {
+                        System.out.println("El número debe ser positivo");
+                    }
                     break;
                 case "5":
+                    System.out.println("Ingrese n");
+                    datum = input.nextInt();
+                    input.nextLine();
+                    for (int i = 0; i < datum; i++) {
+                        System.out.print(rec.fibonacci(i) + " ");
+                    }
+                    break;
+                case "6":
                     System.out.print("Ingrese el tamaño del vector: ");
                     int size = input.nextInt();
                     input.nextLine();
@@ -1164,7 +1192,7 @@ public static void menuStack()
                         System.out.println("El tamaño del vector debe ser positivo");
                     }
                     break;
-                case "6":
+                case "7":
                     System.out.println("Mostrando LSL:");
                     // Aquí deberías llamar a un método que muestre la LSL, por ejemplo:
                     // rec.showLSL();
